@@ -7,6 +7,5 @@
     "tabs": false,
     "singleQuote": false,
     "bracketSpacking": true,
-    "arrowParens": "always",
-    "overrides": [{ "files": ["*.yml"], "options": { "tabWidth": 2 } }]
+    "arrowParens": "always"
 }
