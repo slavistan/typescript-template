@@ -1,0 +1,12 @@
+{
+    "endOfLine": "lf",
+    "printWidth": 180,
+    "tabWidth": 4,
+    "trailingComma": "none",
+    "semi": false,
+    "tabs": false,
+    "singleQuote": false,
+    "bracketSpacking": true,
+    "arrowParens": "always",
+    "overrides": [{ "files": ["*.yml"], "options": { "tabWidth": 2 } }]
+}
