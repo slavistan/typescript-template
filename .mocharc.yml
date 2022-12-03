@@ -1,0 +1,6 @@
+enable-source-maps: true
+bail: true
+spec:
+  - "dist-test/**/*.test.js"
+timeout: "2000"
+reporter: "progress"
