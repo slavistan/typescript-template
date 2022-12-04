@@ -12,14 +12,15 @@
     "main": "dist/main.js",
     "types": "dist/main.d.ts",
     "scripts": {
-        "test": "npm run test:clean && npm run test:build && npx mocha",
-        "test:build": "npx tsc -p ./tests/tsconfig.json",
-        "test:debug": "npm run test:clean && npm run test:build && NODE_OPTIONS=--inspect-brk npx mocha --timeout 9999999",
+        "test": "npm run test:build && npx mocha",
+        "test:build": "npm run test:clean && npm run version.ts && npx tsc -p ./tests/tsconfig.json",
+        "test:debug": "npm run test:build && NODE_OPTIONS=--inspect-brk npx mocha --timeout 9999999",
         "test:clean": "rm -rf ./dist-test",
-        "build": "npx tsc -p ./tsconfig.json",
-        "start": "node ./dist/main.js",
-        "clean": "rm -rf ./dist",
-        "pub": "npm run clean && npm run build && npm publish"
+        "version.ts": "node -p \"'export const LIB_VERSION = ' + JSON.stringify(require('./package.json').version) + ';'\" > src/version.ts",
+        "build": "npm run clean && npm run version.ts && npx tsc -p ./tsconfig.json",
+        "start": "npm run build && node ./dist/main.js",
+        "clean": "rm -rf ./dist ./src/version.ts",
+        "pub": "npm run build && npm publish"
     },
     "dependencies": {
         "axios": "~1.1.3",
