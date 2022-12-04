@@ -4,8 +4,11 @@ import { ok, err, Result } from "neverthrow"
 import { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios"
 import axios from "axios"
 
-/*
+/**
  * Neverthrow axios wrapper.
+ *
+ * @param config - http request configuration
+ *
  */
 export async function httpReq(config: AxiosRequestConfig): Promise<Result<AxiosResponse, AxiosError | Error>> {
     try {
@@ -19,30 +22,23 @@ export async function httpReq(config: AxiosRequestConfig): Promise<Result<AxiosR
     }
 }
 
+/**
+ * Non-blocking sleep.
+ *
+ * @param ms - Duration of sleep in milliseconds.
+ */
 export async function sleepms(ms: number) {
     return util.promisify(setTimeout)(ms)
 }
 
-/*
- * Checks whether 'port' is a valid port, i.e. an integer in (0, 65535].
- */
-export function isValidPort(port: number) {
-    if (isNaN(port) || port <= 0 || 65536 <= port || Math.floor(port) !== port) {
-        return false
-    }
-    return true
-}
-
-/*
- * Parses a file of utf-8 encoded, single-line key=value pairs. Lines
- * starting with a literal '#' character are ignored, as well as lines not
- * containing a literal '='. The first literal '=' character is used to
- * split key from value.
- *
+/**
+ * Parses a file of utf-8 encoded, single-line key=value pairs. Lines starting
+ * with a literal '#' character are ignored, as well as lines not containing a
+ * literal '='. The first literal '=' character is used to split key from value.
  * Both linux ('\n') and windows ('\r\n') EOL characters are supported.
  *
- * This serves as a simple 'dotenv' replacement. 'dotenv' necessarily
- * overrides process.env, whereas for testing purposes it is preferable to
+ * This serves as a simple 'dotenv' replacement. 'dotenv' necessarily overrides
+ * process.env, whereas for testing purposes it is preferable to
  * pass around explicit objects. Merging the parsed kv-pairs with
  * process.env can be done in a separate, trivial step.
  */
